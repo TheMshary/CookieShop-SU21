@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+/* My Styles */
+.text {
+  text-align: center;
+}
+
+#shop-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
