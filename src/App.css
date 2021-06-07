@@ -48,3 +48,18 @@
   margin-right: auto;
   width: 50%;
 }
+
+.cookie-image {
+  width: 200px;
+  height: 200px;
+}
+
+.cookie {
+  margin: 20px;
+}
+
+.list {
+  display: flex; /* allows us to use Flexbox */
+  align-items: center;
+  justify-content: center;
+}
