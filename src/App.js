@@ -1,6 +1,7 @@
 import "./App.css";
 import cookies from "./cookies";
-//    arrayName       filename
+import CookieList from "./components/CookieList";
+import { Title } from "./styles";
 
 function App() {
   const cookieList = cookies.map((cookie) => (
@@ -15,6 +16,7 @@ function App() {
   return (
     <div>
       <div>
+        <Title>PUWPLE ME PWEEZ</Title>
         <h1 className="text">Cookies and Beyond</h1>
         <h4 className="text">Where cookie maniacs gather</h4>
         <img
@@ -23,6 +25,7 @@ function App() {
           src="https://i.pinimg.com/originals/8f/cf/71/8fcf719bce331fe39d7e31ebf07349f3.jpg"
         />
       </div>
+      <CookieList />
       <div className="list">{cookieList}</div>
     </div>
   );
