@@ -1,3 +1,4 @@
+//styles
 import { DetailWrapper } from "../styles";
 
 const CookieDetail = (props) => {
@@ -6,7 +7,7 @@ const CookieDetail = (props) => {
       <img src={props.cookie.image} alt={props.cookie.name} />
       <p>{props.cookie.name}</p>
       <p>{props.cookie.description}</p>
-      <p>{props.cookie.price}</p>
+      <p>{props.cookie.price} KD</p>
     </DetailWrapper>
   );
 };

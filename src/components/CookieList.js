@@ -1,15 +1,15 @@
 //cookie data
 import cookies from "../cookies";
 
+//useSate
+import { useState } from "react";
+
 //components
 import CookieItem from "./CookieItem";
 import SearchBar from "./SearchBar";
 
 //styles
 import { ListWrapper } from "../styles";
-
-//useSate
-import { useState } from "react";
 
 const CookieList = (props) => {
   const [query, setQuery] = useState("");

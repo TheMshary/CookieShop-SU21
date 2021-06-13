@@ -1,3 +1,4 @@
+//styles
 import { CookieWrapper } from "../styles";
 
 const CookieItem = (props) => {

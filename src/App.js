@@ -1,3 +1,9 @@
+//useState
+import { useState } from "react";
+
+//cookies data
+import cookies from "./cookies";
+
 //components
 import CookieList from "./components/CookieList";
 import CookieDetail from "./components/CookieDetail";
@@ -11,12 +17,6 @@ import {
   ThemeButton,
 } from "./styles";
 import { ThemeProvider } from "styled-components";
-
-//useState
-import { useState } from "react";
-
-//cookies data
-import cookies from "./cookies";
 
 const theme = {
   light: {
