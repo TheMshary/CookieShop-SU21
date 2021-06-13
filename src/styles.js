@@ -44,3 +44,36 @@ export const CookieWrapper = styled.div`
     }
   }
 `;
+
+export const ThemeButton = styled.button`
+  font-size: 1em;
+  margin: 1.25em;
+  padding: 0.25em 1em;
+  border-radius: 3px;
+  background-color: ${(props) => props.theme.mainColor};
+  color: ${(props) => props.theme.backgroundColor};
+`;
+
+export const SearchBarStyled = styled.input`
+  padding: 0.5rem;
+  margin: 1rem auto;
+  display: block;
+  width: 40%;
+`;
+
+export const DetailWrapper = styled.div`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+
+  img {
+    width: 40%;
+    float: left;
+    margin-right: 20px;
+  }
+
+  p {
+    vertical-align: middle;
+  }
+`;

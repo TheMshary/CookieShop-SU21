@@ -1,34 +1,50 @@
-import "./App.css";
+//components
 import CookieList from "./components/CookieList";
-import { GlobalStyle, Title, Description, ShopImage } from "./styles";
+import CookieDetail from "./components/CookieDetail";
+
+//styles
+import {
+  GlobalStyle,
+  Title,
+  Description,
+  ShopImage,
+  ThemeButton,
+} from "./styles";
 import { ThemeProvider } from "styled-components";
 
+//useState
+import { useState } from "react";
+
+//cookies data
+import cookies from "./cookies";
+
 const theme = {
-  mainColor: "blue",
-  backgroundColor: "cyan",
+  light: {
+    mainColor: "#293241",
+    backgroundColor: "#e0fbfc",
+  },
+  dark: {
+    mainColor: "#e0fbfc",
+    backgroundColor: "#293241",
+  },
 };
 
 function App() {
-  // JSX
+  const [currentTheme, setCurrentTheme] = useState("light");
+  const [cookie, setCookie] = useState(cookies[0]);
+
+  const toggleTheme = () => {
+    if (currentTheme === "light") setCurrentTheme("dark");
+    else setCurrentTheme("light");
+  };
   return (
     <div>
-<<<<<<< HEAD
-      <div>
-        <Title>PUWPLE ME PWEEZ</Title>
-        <h1 className="text">Cookies and Beyond</h1>
-        <h4 className="text">Where cookie maniacs gather</h4>
-        <img
-          id="shop-image"
-          alt="shop"
-          src="https://i.pinimg.com/originals/8f/cf/71/8fcf719bce331fe39d7e31ebf07349f3.jpg"
-        />
-      </div>
-      <CookieList />
-      <div className="list">{cookieList}</div>
-=======
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme[currentTheme]}>
         <GlobalStyle />
         <div>
+          <ThemeButton onClick={toggleTheme}>
+            {currentTheme === "light" ? "Dark" : "Light"} mode
+          </ThemeButton>
           <Title>Cookies and Beyond</Title>
           <Description>Where cookie maniacs gather</Description>
           <ShopImage
@@ -36,9 +52,9 @@ function App() {
             src="https://i.pinimg.com/originals/8f/cf/71/8fcf719bce331fe39d7e31ebf07349f3.jpg"
           />
         </div>
-        <CookieList />
+        <CookieList setCookie={setCookie} />
+        <CookieDetail cookie={cookie} />
       </ThemeProvider>
->>>>>>> 82df1c61f7ed73338c88ab42f3c74567469d78c9
     </div>
   );
 }
