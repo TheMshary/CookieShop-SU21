@@ -31,12 +31,20 @@ const theme = {
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [cookie, setCookie] = useState(cookies[0]);
+  const [cookie, setCookie] = useState(null);
 
   const toggleTheme = () => {
     if (currentTheme === "light") setCurrentTheme("dark");
     else setCurrentTheme("light");
   };
+  const setView = () => {
+    return cookie ? (
+      <CookieDetail cookie={cookie} />
+    ) : (
+      <CookieList setCookie={setCookie} />
+    );
+  };
+
   return (
     <div>
       <ThemeProvider theme={theme[currentTheme]}>
@@ -52,8 +60,7 @@ function App() {
             src="https://i.pinimg.com/originals/8f/cf/71/8fcf719bce331fe39d7e31ebf07349f3.jpg"
           />
         </div>
-        <CookieList setCookie={setCookie} />
-        <CookieDetail cookie={cookie} />
+        {setView()}
       </ThemeProvider>
     </div>
   );
