@@ -77,3 +77,7 @@ export const DetailWrapper = styled.div`
     vertical-align: middle;
   }
 `;
+
+export const DeleteButtonStyled = styled.p`
+  color: ${(props) => props.theme.red};
+`;

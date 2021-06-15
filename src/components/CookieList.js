@@ -14,10 +14,15 @@ import { ListWrapper } from "../styles";
 const CookieList = (props) => {
   const [query, setQuery] = useState("");
 
-  const cookieList = cookies
+  const cookieList = props.cookies
     .filter((cookie) => cookie.name.toLowerCase().includes(query.toLowerCase()))
     .map((cookie) => (
-      <CookieItem cookie={cookie} key={cookie.id} setCookie={props.setCookie} />
+      <CookieItem
+        cookie={cookie}
+        key={cookie.id}
+        setCookie={props.setCookie}
+        cookieDelete={props.cookieDelete}
+      />
     ));
 
   return (

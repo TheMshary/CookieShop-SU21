@@ -22,16 +22,24 @@ const theme = {
   light: {
     mainColor: "#293241",
     backgroundColor: "#e0fbfc",
+    red: "red",
   },
   dark: {
     mainColor: "#e0fbfc",
     backgroundColor: "#293241",
+    red: "red",
   },
 };
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("light");
   const [cookie, setCookie] = useState(null);
+  const [_cookies, setCookies] = useState(cookies);
+
+  const cookieDelete = (cookieId) => {
+    const updatedCookies = _cookies.filter((cookie) => cookie.id !== cookieId);
+    setCookies(updatedCookies);
+  };
 
   const toggleTheme = () => {
     if (currentTheme === "light") setCurrentTheme("dark");
@@ -39,9 +47,17 @@ function App() {
   };
   const setView = () => {
     return cookie ? (
-      <CookieDetail cookie={cookie} />
+      <CookieDetail
+        cookie={cookie}
+        setCookie={setCookie}
+        cookieDelete={cookieDelete}
+      />
     ) : (
-      <CookieList setCookie={setCookie} />
+      <CookieList
+        setCookie={setCookie}
+        cookies={_cookies}
+        cookieDelete={cookieDelete}
+      />
     );
   };
 
