@@ -2,6 +2,7 @@ const cookies = [
   {
     id: 1,
     name: "Chocolate Chip Cookie",
+    slug: "chocolate-chip-cookie",
     price: 10,
     description: "Swiss chocolate chip🇨🇭. Calories: 215 Kcal",
     image:
@@ -10,6 +11,7 @@ const cookies = [
   {
     id: 2,
     name: "Cute Cookie",
+    slug: "cute-cookie",
     description: "some cookie.. sold by dozens. Calories: 115 Kcal",
     price: 8,
     image:
@@ -18,6 +20,7 @@ const cookies = [
   {
     id: 3,
     name: "Katakeet Cookie",
+    slug: "katakeet-cookie",
     price: 7,
     description: "Lailz special recipe. Calories: 445 Kcal",
     image:
@@ -26,6 +29,7 @@ const cookies = [
   {
     id: 4,
     name: "Pika Cookie",
+    slug: "pika-cookie",
     price: 13,
     description: "Special cookies. Calories: 1215 Kcal",
     image:

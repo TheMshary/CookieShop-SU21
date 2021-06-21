@@ -4,19 +4,24 @@ import { DetailWrapper } from "../styles";
 //components
 import DeleteButton from "./buttons/DeleteButton";
 
+// Libraries
+import { useParams, Redirect } from "react-router-dom";
+
 const CookieDetail = (props) => {
+  const cookieSlug = useParams().cookieSlug;
+  const cookie = props.cookies.find((cookie) => cookie.slug === cookieSlug);
+
+  // if the cookie is undefined
+  //    redirect to the list page
+  if (!cookie) return <Redirect to="/cookies" />;
   return (
     <DetailWrapper>
-      <img src={props.cookie.image} alt={props.cookie.name} />
-      <p>{props.cookie.name}</p>
-      <p>{props.cookie.description}</p>
-      <p>{props.cookie.price} KD</p>
-      <DeleteButton
-        cookieDelete={props.cookieDelete}
-        cookieId={props.cookie.id}
-        setCookie={props.setCookie}
-      />
-      <button onClick={() => props.setCookie(null)}>Back</button>
+      <img src={cookie.image} alt={cookie.name} />
+      <p>{cookie.name}</p>
+      <p>{cookie.description}</p>
+      <p>{cookie.price} KD</p>
+      <DeleteButton cookieDelete={props.cookieDelete} cookieId={cookie.id} />
+      <button>Back</button>
     </DetailWrapper>
   );
 };

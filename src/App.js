@@ -1,21 +1,20 @@
 //useState
 import { useState } from "react";
 
+// Libraries
+import { Route, Switch } from "react-router";
+
 //cookies data
 import cookies from "./cookies";
 
 //components
 import CookieList from "./components/CookieList";
 import CookieDetail from "./components/CookieDetail";
+import Home from "./components/Home";
+import NavBar from "./components/NavBar";
 
 //styles
-import {
-  GlobalStyle,
-  Title,
-  Description,
-  ShopImage,
-  ThemeButton,
-} from "./styles";
+import { GlobalStyle } from "./styles";
 import { ThemeProvider } from "styled-components";
 
 const theme = {
@@ -33,7 +32,6 @@ const theme = {
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [cookie, setCookie] = useState(null);
   const [_cookies, setCookies] = useState(cookies);
 
   const cookieDelete = (cookieId) => {
@@ -45,38 +43,30 @@ function App() {
     if (currentTheme === "light") setCurrentTheme("dark");
     else setCurrentTheme("light");
   };
-  const setView = () => {
-    return cookie ? (
-      <CookieDetail
-        cookie={cookie}
-        setCookie={setCookie}
-        cookieDelete={cookieDelete}
-      />
-    ) : (
-      <CookieList
-        setCookie={setCookie}
-        cookies={_cookies}
-        cookieDelete={cookieDelete}
-      />
-    );
-  };
 
   return (
     <div>
       <ThemeProvider theme={theme[currentTheme]}>
         <GlobalStyle />
-        <div>
-          <ThemeButton onClick={toggleTheme}>
-            {currentTheme === "light" ? "Dark" : "Light"} mode
-          </ThemeButton>
-          <Title>Cookies and Beyond</Title>
-          <Description>Where cookie maniacs gather</Description>
-          <ShopImage
-            alt="shop"
-            src="https://i.pinimg.com/originals/8f/cf/71/8fcf719bce331fe39d7e31ebf07349f3.jpg"
-          />
-        </div>
-        {setView()}
+        <NavBar currentTheme={currentTheme} toggleTheme={toggleTheme} />
+
+        {/* 
+          RESTful API Design
+          list of cookies: /cookies
+          detail of a cookie with ID 1: /cookies/1
+          detail of a cookie with ID 3: /cookies/3
+         */}
+        <Switch>
+          <Route path="/cookies/:cookieSlug">
+            <CookieDetail cookies={_cookies} cookieDelete={cookieDelete} />
+          </Route>
+          <Route path="/cookies">
+            <CookieList cookies={_cookies} cookieDelete={cookieDelete} />
+          </Route>
+          <Route exact path="/">
+            <Home />
+          </Route>
+        </Switch>
       </ThemeProvider>
     </div>
   );
