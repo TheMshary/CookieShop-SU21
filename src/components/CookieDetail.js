@@ -9,7 +9,7 @@ import { DetailWrapper } from "../styles";
 import DeleteButton from "./buttons/DeleteButton";
 
 // Libraries
-import { useParams, Redirect } from "react-router-dom";
+import { useParams, Redirect, Link } from "react-router-dom";
 
 const CookieDetail = () => {
   const cookieSlug = useParams().cookieSlug;
@@ -27,7 +27,9 @@ const CookieDetail = () => {
       <p>{cookie.description}</p>
       <p>{cookie.price} KD</p>
       <DeleteButton cookieId={cookie.id} />
-      <button>Back</button>
+      <Link to="/cookies">
+        <button>Back</button>
+      </Link>
     </DetailWrapper>
   );
 };

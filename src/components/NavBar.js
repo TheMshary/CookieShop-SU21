@@ -13,7 +13,7 @@ const NavBar = (props) => {
               width="100"
             />
           </Logo>
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 ml-auto">
+          <ul className="navbar-nav ml-0">
             <ThemeButton onClick={props.toggleTheme} className="nav-item">
               {props.currentTheme === "light" ? "Dark" : "Light"} mode
             </ThemeButton>
