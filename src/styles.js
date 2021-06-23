@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
 
 export const AiFillPlusCircleStyled = styled(AiFillPlusCircle)`
   color: ${(props) => props.theme.mainColor};
-  margin-left: 80%;
+  margin-left: 84%;
 `;
 
 export const CreateButtonStyled = styled.button`
