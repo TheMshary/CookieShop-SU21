@@ -1,5 +1,6 @@
-//cookie data
-import cookies from "../cookies";
+// MobX
+import cookieStore from "../stores/cookieStore";
+import { observer } from "mobx-react";
 
 //useSate
 import { useState } from "react";
@@ -11,19 +12,12 @@ import SearchBar from "./SearchBar";
 //styles
 import { ListWrapper } from "../styles";
 
-const CookieList = (props) => {
+const CookieList = () => {
   const [query, setQuery] = useState("");
 
-  const cookieList = props.cookies
+  const cookieList = cookieStore.cookies
     .filter((cookie) => cookie.name.toLowerCase().includes(query.toLowerCase()))
-    .map((cookie) => (
-      <CookieItem
-        cookie={cookie}
-        key={cookie.id}
-        setCookie={props.setCookie}
-        cookieDelete={props.cookieDelete}
-      />
-    ));
+    .map((cookie) => <CookieItem cookie={cookie} key={cookie.id} />);
 
   return (
     <div>
@@ -33,4 +27,4 @@ const CookieList = (props) => {
   );
 };
 
-export default CookieList;
+export default observer(CookieList);

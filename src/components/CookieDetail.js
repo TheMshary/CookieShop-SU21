@@ -1,3 +1,7 @@
+// MobX
+import cookieStore from "../stores/cookieStore";
+import { observer } from "mobx-react";
+
 //styles
 import { DetailWrapper } from "../styles";
 
@@ -7,9 +11,11 @@ import DeleteButton from "./buttons/DeleteButton";
 // Libraries
 import { useParams, Redirect } from "react-router-dom";
 
-const CookieDetail = (props) => {
+const CookieDetail = () => {
   const cookieSlug = useParams().cookieSlug;
-  const cookie = props.cookies.find((cookie) => cookie.slug === cookieSlug);
+  const cookie = cookieStore.cookies.find(
+    (cookie) => cookie.slug === cookieSlug
+  );
 
   // if the cookie is undefined
   //    redirect to the list page
@@ -20,10 +26,10 @@ const CookieDetail = (props) => {
       <p>{cookie.name}</p>
       <p>{cookie.description}</p>
       <p>{cookie.price} KD</p>
-      <DeleteButton cookieDelete={props.cookieDelete} cookieId={cookie.id} />
+      <DeleteButton cookieId={cookie.id} />
       <button>Back</button>
     </DetailWrapper>
   );
 };
 
-export default CookieDetail;
+export default observer(CookieDetail);

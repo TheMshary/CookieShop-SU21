@@ -15,11 +15,7 @@ const CookieItem = (props) => {
       </Link>
       <p>{props.cookie.name}</p>
       <p className="cookie-price">{props.cookie.price} KD</p>
-      <DeleteButton
-        cookieDelete={props.cookieDelete}
-        cookieId={props.cookie.id}
-        setCookie={props.setCookie}
-      />
+      <DeleteButton cookieId={props.cookie.id} />
     </CookieWrapper>
   );
 };

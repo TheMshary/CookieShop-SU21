@@ -4,9 +4,6 @@ import { useState } from "react";
 // Libraries
 import { Route, Switch } from "react-router";
 
-//cookies data
-import cookies from "./cookies";
-
 //components
 import CookieList from "./components/CookieList";
 import CookieDetail from "./components/CookieDetail";
@@ -32,12 +29,6 @@ const theme = {
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [_cookies, setCookies] = useState(cookies);
-
-  const cookieDelete = (cookieId) => {
-    const updatedCookies = _cookies.filter((cookie) => cookie.id !== cookieId);
-    setCookies(updatedCookies);
-  };
 
   const toggleTheme = () => {
     if (currentTheme === "light") setCurrentTheme("dark");
@@ -49,19 +40,12 @@ function App() {
       <ThemeProvider theme={theme[currentTheme]}>
         <GlobalStyle />
         <NavBar currentTheme={currentTheme} toggleTheme={toggleTheme} />
-
-        {/* 
-          RESTful API Design
-          list of cookies: /cookies
-          detail of a cookie with ID 1: /cookies/1
-          detail of a cookie with ID 3: /cookies/3
-         */}
         <Switch>
           <Route path="/cookies/:cookieSlug">
-            <CookieDetail cookies={_cookies} cookieDelete={cookieDelete} />
+            <CookieDetail />
           </Route>
           <Route path="/cookies">
-            <CookieList cookies={_cookies} cookieDelete={cookieDelete} />
+            <CookieList />
           </Route>
           <Route exact path="/">
             <Home />
