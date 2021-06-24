@@ -3,9 +3,11 @@ import { CookieWrapper } from "../styles";
 
 //buttons
 import DeleteButton from "./buttons/DeleteButton";
+import UpdateButton from "./buttons/UpdateButton";
 
 // Libraries
 import { Link } from "react-router-dom";
+import { observer } from "mobx-react";
 
 const CookieItem = (props) => {
   return (
@@ -15,9 +17,10 @@ const CookieItem = (props) => {
       </Link>
       <p>{props.cookie.name}</p>
       <p className="cookie-price">{props.cookie.price} KD</p>
+      <UpdateButton cookie={props.cookie} />
       <DeleteButton cookieId={props.cookie.id} />
     </CookieWrapper>
   );
 };
 
-export default CookieItem;
+export default observer(CookieItem);
