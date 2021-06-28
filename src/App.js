@@ -18,11 +18,13 @@ const theme = {
   light: {
     mainColor: "#293241",
     backgroundColor: "#e0fbfc",
+    pink: "#f283a2",
     red: "red",
   },
   dark: {
     mainColor: "#e0fbfc",
     backgroundColor: "#293241",
+    pink: "#f283a2",
     red: "red",
   },
 };
