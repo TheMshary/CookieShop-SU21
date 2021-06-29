@@ -22,17 +22,28 @@ class CookieStore {
     }
   };
 
-  cookieDelete = (cookieId) => {
-    const updatedCookies = this.cookies.filter(
-      (cookie) => cookie.id !== cookieId
-    );
-    this.cookies = updatedCookies;
+  cookieDelete = async (cookieId) => {
+    try {
+      await axios.delete(`http://localhost:8000/cookies/${cookieId}`);
+      const updatedCookies = this.cookies.filter(
+        (cookie) => cookie.id !== cookieId
+      );
+      this.cookies = updatedCookies;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  cookieCreate = (newCookie) => {
-    newCookie.id = this.cookies.length + 1;
-    newCookie.slug = slugify(newCookie.name);
-    this.cookies.push(newCookie);
+  cookieCreate = async (newCookie) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/cookies",
+        newCookie
+      );
+      this.cookies.push(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   cookieUpdate = (updateCookie) => {
