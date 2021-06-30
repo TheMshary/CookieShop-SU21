@@ -46,15 +46,23 @@ class CookieStore {
     }
   };
 
-  cookieUpdate = (updateCookie) => {
-    const cookie = this.cookies.find((cookie) => cookie.id === updateCookie.id);
-    // vvv do it in one line 😈vvvv
-    cookie.name = updateCookie.name;
-    cookie.price = updateCookie.price;
-    cookie.description = updateCookie.description;
-    cookie.image = updateCookie.image;
-    // ^^^^^^^^^^^^^^
-    cookie.slug = slugify(updateCookie.name);
+  cookieUpdate = async (updateCookie) => {
+    try {
+      await axios.put(
+        `http://localhost:8000/cookies/${updateCookie.id}`,
+        updateCookie
+      );
+      const cookie = this.cookies.find(
+        (cookie) => cookie.id === updateCookie.id
+      );
+      cookie.name = updateCookie.name;
+      cookie.price = updateCookie.price;
+      cookie.description = updateCookie.description;
+      cookie.image = updateCookie.image;
+      cookie.slug = slugify(updateCookie.name);
+    } catch (error) {
+      console.error(error);
+    }
   };
 }
 
