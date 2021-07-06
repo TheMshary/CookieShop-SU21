@@ -24,6 +24,9 @@ const CookieModal = (props) => {
   const handleChange = (event) => {
     setCookie({ ...cookie, [event.target.name]: event.target.value });
   };
+  const handleImage = (event) => {
+    setCookie({ ...cookie, image: event.target.files[0] });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -76,10 +79,9 @@ const CookieModal = (props) => {
             <label>Image</label>
             <input
               className="form-control"
-              type="text"
-              onChange={handleChange}
+              type="file"
+              onChange={handleImage}
               name="image"
-              value={cookie.image}
             />
           </div>
           <CreateButtonStyled>

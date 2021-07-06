@@ -1,8 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import axios from "axios";
 
-import slugify from "react-slugify";
-
 class CookieStore {
   // receive the cookies data array from the backend
   // make a web/HTTP request to the server to get the cookies
@@ -36,9 +34,12 @@ class CookieStore {
 
   cookieCreate = async (newCookie) => {
     try {
+      const formData = new FormData();
+      for (const key in newCookie) formData.append(key, newCookie[key]);
+
       const response = await axios.post(
         "http://localhost:8000/cookies",
-        newCookie
+        formData
       );
       this.cookies.push(response.data);
     } catch (error) {
@@ -48,18 +49,16 @@ class CookieStore {
 
   cookieUpdate = async (updateCookie) => {
     try {
-      await axios.put(
+      const formData = new FormData();
+      for (const key in updateCookie) formData.append(key, updateCookie[key]);
+      const reposne = await axios.put(
         `http://localhost:8000/cookies/${updateCookie.id}`,
-        updateCookie
+        formData
       );
       const cookie = this.cookies.find(
-        (cookie) => cookie.id === updateCookie.id
+        (cookie) => cookie.id === reposne.data.id
       );
-      cookie.name = updateCookie.name;
-      cookie.price = updateCookie.price;
-      cookie.description = updateCookie.description;
-      cookie.image = updateCookie.image;
-      cookie.slug = slugify(updateCookie.name);
+      for (const key in cookie) cookie[key] = reposne.data[key];
     } catch (error) {
       console.error(error);
     }
