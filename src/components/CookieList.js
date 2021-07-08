@@ -1,5 +1,4 @@
 // MobX
-import cookieStore from "../stores/cookieStore";
 import { observer } from "mobx-react";
 
 //useSate
@@ -12,14 +11,14 @@ import CookieModal from "./modals/CookieModal";
 //styles
 import { ListWrapper, AiFillPlusCircleStyled } from "../styles";
 
-const CookieList = () => {
+const CookieList = ({ cookies, bakery }) => {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  const cookieList = cookieStore.cookies
+  const cookieList = cookies
     .filter((cookie) => cookie.name.toLowerCase().includes(query.toLowerCase()))
     .map((cookie) => <CookieItem cookie={cookie} key={cookie.id} />);
 
@@ -27,7 +26,7 @@ const CookieList = () => {
     <div>
       <SearchBar setQuery={setQuery} />
       <AiFillPlusCircleStyled size="2em" onClick={openModal} />
-      <CookieModal isOpen={isOpen} closeModal={closeModal} />
+      <CookieModal isOpen={isOpen} closeModal={closeModal} bakery={bakery} />
       <ListWrapper>{cookieList}</ListWrapper>
     </div>
   );

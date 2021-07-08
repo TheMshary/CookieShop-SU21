@@ -5,6 +5,7 @@ class CookieStore {
   // receive the cookies data array from the backend
   // make a web/HTTP request to the server to get the cookies
   cookies = [];
+  loading = true;
 
   constructor() {
     // Makes it so that when the data is updated the components will be re-rendered.
@@ -15,6 +16,7 @@ class CookieStore {
     try {
       const response = await axios.get("http://localhost:8000/cookies");
       this.cookies = response.data;
+      this.loading = false;
     } catch (error) {
       console.error("fetchCookies: ", error);
     }
@@ -32,16 +34,17 @@ class CookieStore {
     }
   };
 
-  cookieCreate = async (newCookie) => {
+  cookieCreate = async (newCookie, bakery) => {
     try {
       const formData = new FormData();
       for (const key in newCookie) formData.append(key, newCookie[key]);
 
       const response = await axios.post(
-        "http://localhost:8000/cookies",
+        `http://localhost:8000/bakeries/${bakery.id}/cookies`,
         formData
       );
       this.cookies.push(response.data);
+      bakery.cookies.push({ id: response.data.id });
     } catch (error) {
       console.error(error);
     }
@@ -63,6 +66,9 @@ class CookieStore {
       console.error(error);
     }
   };
+
+  getCookieById = (cookieId) =>
+    this.cookies.find((cookie) => cookie.id === cookieId);
 }
 
 const cookieStore = new CookieStore();

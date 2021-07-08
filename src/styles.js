@@ -10,6 +10,10 @@ export const GlobalStyle = createGlobalStyle`
     }
 `;
 
+export const BakeryItemImage = styled.img`
+  width: 20em;
+`;
+
 export const AiFillPlusCircleStyled = styled(AiFillPlusCircle)`
   color: ${(props) => props.theme.mainColor};
   margin-left: 84%;

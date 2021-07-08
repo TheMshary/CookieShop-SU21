@@ -31,7 +31,7 @@ const CookieModal = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (props.oldCookie) cookieStore.cookieUpdate(cookie);
-    else cookieStore.cookieCreate(cookie);
+    else cookieStore.cookieCreate(cookie, props.bakery);
     props.closeModal();
   };
   return (
