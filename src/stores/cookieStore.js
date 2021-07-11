@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import axios from "axios";
+import instance from "./instance";
 
 class CookieStore {
   // receive the cookies data array from the backend
@@ -14,7 +14,7 @@ class CookieStore {
 
   fetchCookies = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/cookies");
+      const response = await instance.get("/cookies");
       this.cookies = response.data;
       this.loading = false;
     } catch (error) {
@@ -24,7 +24,7 @@ class CookieStore {
 
   cookieDelete = async (cookieId) => {
     try {
-      await axios.delete(`http://localhost:8000/cookies/${cookieId}`);
+      await instance.delete(`/cookies/${cookieId}`);
       const updatedCookies = this.cookies.filter(
         (cookie) => cookie.id !== cookieId
       );
@@ -39,8 +39,8 @@ class CookieStore {
       const formData = new FormData();
       for (const key in newCookie) formData.append(key, newCookie[key]);
 
-      const response = await axios.post(
-        `http://localhost:8000/bakeries/${bakery.id}/cookies`,
+      const response = await instance.post(
+        `/bakeries/${bakery.id}/cookies`,
         formData
       );
       this.cookies.push(response.data);
@@ -54,8 +54,8 @@ class CookieStore {
     try {
       const formData = new FormData();
       for (const key in updateCookie) formData.append(key, updateCookie[key]);
-      const reposne = await axios.put(
-        `http://localhost:8000/cookies/${updateCookie.id}`,
+      const reposne = await instance.put(
+        `/cookies/${updateCookie.id}`,
         formData
       );
       const cookie = this.cookies.find(

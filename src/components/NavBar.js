@@ -1,6 +1,7 @@
 import lightLogo from "../light-logo.png";
 import darkLogo from "../dark-logo.png";
 import { ThemeButton, NavLinkStyled, Logo, NavStyled } from "../styles";
+import SignupButton from "./buttons/SignupButton";
 
 const NavBar = (props) => {
   return (
@@ -17,6 +18,7 @@ const NavBar = (props) => {
             <ThemeButton onClick={props.toggleTheme} className="nav-item">
               {props.currentTheme === "light" ? "Dark" : "Light"} mode
             </ThemeButton>
+            <SignupButton />
             <NavLinkStyled to="/cookies" className="nav-item">
               Cookies
             </NavLinkStyled>
