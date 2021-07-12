@@ -18,7 +18,7 @@ const customStyles = {
   },
 };
 
-const SignupModal = (props) => {
+const SigninModal = (props) => {
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -30,7 +30,7 @@ const SignupModal = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    authStore.signup(user);
+    authStore.signin(user);
     props.closeModal();
   };
 
@@ -40,7 +40,7 @@ const SignupModal = (props) => {
         isOpen={props.isOpen}
         onRequestClose={props.closeModal}
         style={customStyles}
-        contentLabel="Signup Modal"
+        contentLabel="Signin Modal"
       >
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -62,11 +62,11 @@ const SignupModal = (props) => {
               />
             </div>
           </div>
-          <CreateButtonStyled>Signup</CreateButtonStyled>
+          <CreateButtonStyled>Signin</CreateButtonStyled>
         </form>
       </Modal>
     </div>
   );
 };
 
-export default SignupModal;
+export default SigninModal;

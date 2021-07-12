@@ -9,6 +9,9 @@ import UpdateButton from "./buttons/UpdateButton";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react";
 
+//stores
+import authStore from "../stores/authStore";
+
 const CookieItem = (props) => {
   return (
     <CookieWrapper>
@@ -17,8 +20,12 @@ const CookieItem = (props) => {
       </Link>
       <p>{props.cookie.name}</p>
       <p className="cookie-price">{props.cookie.price} KD</p>
-      <UpdateButton cookie={props.cookie} />
-      <DeleteButton cookieId={props.cookie.id} />
+      {authStore.user && (
+        <>
+          <UpdateButton cookie={props.cookie} />
+          <DeleteButton cookieId={props.cookie.id} />
+        </>
+      )}
     </CookieWrapper>
   );
 };

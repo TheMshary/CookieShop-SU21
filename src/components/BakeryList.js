@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { observer } from "mobx-react";
+
+//stores
 import bakeryStore from "../stores/bakeryStore";
+import authStore from "../stores/authStore";
+
 import { Title, AiFillPlusCircleStyled } from "../styles";
 
 // Components
@@ -22,7 +26,10 @@ const BakeryList = () => {
     <div className="container">
       <Title>Bakeries</Title>
       <SearchBar setQuery={setQuery} />
-      <AiFillPlusCircleStyled size="2em" onClick={openModal} />
+      {authStore.user && (
+        <AiFillPlusCircleStyled size="2em" onClick={openModal} />
+      )}
+
       <BakeryModal isOpen={isOpen} closeModal={closeModal} />
       {bakeries}
     </div>

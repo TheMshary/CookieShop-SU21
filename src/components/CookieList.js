@@ -11,6 +11,9 @@ import CookieModal from "./modals/CookieModal";
 //styles
 import { ListWrapper, AiFillPlusCircleStyled } from "../styles";
 
+//stores
+import authStore from "../stores/authStore";
+
 const CookieList = ({ cookies, bakery }) => {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +28,9 @@ const CookieList = ({ cookies, bakery }) => {
   return (
     <div>
       <SearchBar setQuery={setQuery} />
-      <AiFillPlusCircleStyled size="2em" onClick={openModal} />
+      {authStore.user && (
+        <AiFillPlusCircleStyled size="2em" onClick={openModal} />
+      )}
       <CookieModal isOpen={isOpen} closeModal={closeModal} bakery={bakery} />
       <ListWrapper>{cookieList}</ListWrapper>
     </div>
