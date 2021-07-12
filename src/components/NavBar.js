@@ -1,6 +1,12 @@
 import lightLogo from "../light-logo.png";
 import darkLogo from "../dark-logo.png";
-import { ThemeButton, NavLinkStyled, Logo, NavStyled } from "../styles";
+import {
+  ThemeButton,
+  NavLinkStyled,
+  Logo,
+  NavStyled,
+  SignoutStyled,
+} from "../styles";
 import { observer } from "mobx-react";
 //buttons
 import SignupButton from "./buttons/SignupButton";
@@ -25,7 +31,10 @@ const NavBar = (props) => {
               {props.currentTheme === "light" ? "Dark" : "Light"} mode
             </ThemeButton>
             {authStore.user ? (
-              <p>hello {authStore.user.username}</p>
+              <>
+                <p>hello {authStore.user.username}</p>
+                <SignoutStyled onClick={authStore.signout}></SignoutStyled>
+              </>
             ) : (
               <>
                 <SigninButton />
