@@ -1,4 +1,6 @@
 import { makeAutoObservable } from "mobx";
+import bakeryStore from "./bakeryStore";
+
 import instance from "./instance";
 
 class CookieStore {
@@ -24,11 +26,13 @@ class CookieStore {
 
   cookieDelete = async (cookieId) => {
     try {
+      bakeryStore.loading = true;
       await instance.delete(`/cookies/${cookieId}`);
       const updatedCookies = this.cookies.filter(
         (cookie) => cookie.id !== cookieId
       );
       this.cookies = updatedCookies;
+      bakeryStore.fetchBakeries();
     } catch (error) {
       console.error(error);
     }

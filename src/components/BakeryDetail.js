@@ -13,6 +13,7 @@ const BakeryDetail = () => {
   const cookies = bakery.cookies.map((cookie) =>
     cookieStore.getCookieById(cookie.id)
   );
+
   return (
     <>
       <DetailWrapper>

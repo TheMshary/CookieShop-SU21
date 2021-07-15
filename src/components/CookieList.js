@@ -24,6 +24,10 @@ const CookieList = ({ cookies, bakery }) => {
   const cookieList = cookies
     .filter((cookie) => cookie.name.toLowerCase().includes(query.toLowerCase()))
     .map((cookie) => <CookieItem cookie={cookie} key={cookie.id} />);
+  console.log(
+    "🚀 ~ file: CookieList.js ~ line 27 ~ CookieList ~ cookies",
+    cookies
+  );
 
   return (
     <div>
